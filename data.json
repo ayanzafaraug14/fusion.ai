@@ -1,0 +1,419 @@
+[
+    {
+        "user_input": "Hi"
+    },
+    {
+        "user_input": "2+2"
+    },
+    {
+        "user_input": "2+2"
+    },
+    {
+        "user": "2+2",
+        "ai": "4"
+    },
+    {
+        "user": "Hi",
+        "ai": "You said: Hi"
+    },
+    {
+        "user": "English Essay",
+        "ai": "You said: English Essay"
+    },
+    {
+        "user": "Hi",
+        "ai": "You said: Hi"
+    },
+    {
+        "user": "English Essay",
+        "ai": "Sure, I can help you write an English essay. Please tell me the topic!"
+    },
+    {
+        "user": "My School",
+        "ai": "I don’t understand 'My School' yet, but I'm learning!"
+    },
+    {
+        "user": "2*62+5*96/2",
+        "ai": "364"
+    },
+    {
+        "user": "Hi",
+        "ai": "You said: Hi"
+    },
+    {
+        "user": "2+2",
+        "ai": "4"
+    },
+    {
+        "user": "Hi",
+        "bot": "You said: Hi"
+    },
+    {
+        "user": "2+2",
+        "bot": "4"
+    },
+    {
+        "user": "Glossary Biology Cell",
+        "bot": "Sorry, I don’t understand that yet."
+    },
+    {
+        "user": "School",
+        "bot": "Sorry, I don’t understand that yet."
+    },
+    {
+        "user": "Hi",
+        "bot": "You said: Hi"
+    },
+    {
+        "user": "2+2",
+        "bot": "4"
+    },
+    {
+        "user": "2+2",
+        "bot": "4"
+    },
+    {
+        "user": "Hi",
+        "bot": "Hello! I'm Fusion AI. How can I help you today?"
+    },
+    {
+        "user": "School",
+        "bot": "place to learn."
+    },
+    {
+        "user": "Sper",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Sperm",
+        "bot": "Male reproductive cell."
+    },
+    {
+        "user": "Ovem",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Oven",
+        "bot": "device to bake food."
+    },
+    {
+        "user": "Phone",
+        "bot": "device for calling."
+    },
+    {
+        "user": "Python",
+        "bot": "High-level programming language."
+    },
+    {
+        "user": "16*150",
+        "bot": "2400"
+    },
+    {
+        "user": "bus",
+        "bot": "large vehicle for passengers."
+    },
+    {
+        "user": "Hi",
+        "bot": "Hello! I'm Fusion AI. How can I help you today?"
+    },
+    {
+        "user": "What is 2+2",
+        "bot": "head covering."
+    },
+    {
+        "user": "What is 2+2",
+        "bot": "4"
+    },
+    {
+        "user": "Machine Learning",
+        "bot": "AI technique where systems learn from data."
+    },
+    {
+        "user": "Cricket",
+        "bot": "A bat-and-ball game played between two teams of eleven players on a field with a 22-yard pitch."
+    },
+    {
+        "user": "Beef",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Golf",
+        "bot": "A sport where players use clubs to hit balls into holes on a course in as few strokes as possible."
+    },
+    {
+        "user": "AI",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Artificial Intelligence",
+        "bot": "Machines simulating human intelligence."
+    },
+    {
+        "user": "PHP",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Python",
+        "bot": "High-level programming language."
+    },
+    {
+        "user": "Cricket",
+        "bot": "A bat-and-ball game played between two teams of eleven players on a field with a 22-yard pitch."
+    },
+    {
+        "user": "Football",
+        "bot": "A team sport where two sides compete to score goals by moving a ball into the opponent’s area; varies by region (soccer, American football, rugby)."
+    },
+    {
+        "user": "22+36*96*100-98/2",
+        "bot": "345573.0"
+    },
+    {
+        "user": "1000*65*96*98-100-200+96/3",
+        "bot": "611519732.0"
+    },
+    {
+        "user": "Hassitation",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Hasitation",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Hungary",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Hungry",
+        "bot": "needing food."
+    },
+    {
+        "user": "1200*36*56*41-500+1236/4",
+        "bot": "99187009.0"
+    },
+    {
+        "user": "Machine Learning",
+        "bot": "AI technique where systems learn from data."
+    },
+    {
+        "user": "Water",
+        "bot": "clear liquid for drinking."
+    },
+    {
+        "user": "Juice",
+        "bot": "liquid from fruits."
+    },
+    {
+        "user": "Cry",
+        "bot": "shed tears."
+    },
+    {
+        "user": "Laugh",
+        "bot": "show joy with sound."
+    },
+    {
+        "user": "Photosynthesis",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Snooker",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Java",
+        "bot": "Popular programming language."
+    },
+    {
+        "user": "Artificial Intelligence",
+        "bot": "Machines simulating human intelligence."
+    },
+    {
+        "user": "Shoes",
+        "bot": "covering for feet."
+    },
+    {
+        "user": "Chemical",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Hi",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Hello",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Hi",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Hi",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Hi",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Hi",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Hi",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Sex",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Reproduction",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Sperm",
+        "bot": "Male reproductive cell."
+    },
+    {
+        "user": "Oven",
+        "bot": "device to bake food."
+    },
+    {
+        "user": "Cell",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Run",
+        "bot": "move quickly."
+    },
+    {
+        "user": "Walk",
+        "bot": "move on feet."
+    },
+    {
+        "user": "Watch",
+        "bot": "observe closely."
+    },
+    {
+        "user": "Hi",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Hello",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Hi",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Apple",
+        "bot": "round red fruit."
+    },
+    {
+        "user": "Hi",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Hi",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Hi",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "proud",
+        "bot": "feeling satisfied with yourself."
+    },
+    {
+        "user": "Beautiful",
+        "bot": "pleasing to the eye."
+    },
+    {
+        "user": "Beautiful",
+        "bot": "pleasing to the eye."
+    },
+    {
+        "user": "Cricket",
+        "bot": "A bat-and-ball game played between two teams of eleven players on a field with a 22-yard pitch."
+    },
+    {
+        "user": "Golf",
+        "bot": "A sport where players use clubs to hit balls into holes on a course in as few strokes as possible."
+    },
+    {
+        "user": "Lion",
+        "bot": "wild animal, king of jungle."
+    },
+    {
+        "user": "Elephant",
+        "bot": "large animal with trunk."
+    },
+    {
+        "user": "Lion",
+        "bot": "wild animal, king of jungle."
+    },
+    {
+        "user": "Cricket",
+        "bot": "A bat-and-ball game played between two teams of eleven players on a field with a 22-yard pitch."
+    },
+    {
+        "user": "Cricket",
+        "bot": "A bat-and-ball game played between two teams of eleven players on a field with a 22-yard pitch."
+    },
+    {
+        "user": "2+552-+288/2*569*14+0-250",
+        "bot": "-1146800.0"
+    },
+    {
+        "user": "Hi",
+        "bot": "Sorry, I don't know that yet."
+    },
+    {
+        "user": "Lion",
+        "bot": "wild animal, king of jungle."
+    },
+    {
+        "user": "Cricket",
+        "bot": "A bat-and-ball game played between two teams of eleven players on a field with a 22-yard pitch."
+    },
+    {
+        "user": "Sperm",
+        "bot": "Male reproductive cell."
+    },
+    {
+        "user": "Netball",
+        "bot": "A ball sport similar to basketball but with no dribbling and specialized positions."
+    },
+    {
+        "user": "sleep",
+        "bot": "natural rest."
+    },
+    {
+        "user": "basketball",
+        "bot": "A game played between two teams of five players where points are scored by throwing a ball through a hoop."
+    },
+    {
+        "user": "Artificial Intelligence",
+        "bot": "Machines simulating human intelligence."
+    },
+    {
+        "user": "Machine Learning",
+        "bot": "AI technique where systems learn from data."
+    },
+    {
+        "user": "Neural Network",
+        "bot": "Computer system modeled on human brain."
+    },
+    {
+        "user": "Baseball",
+        "bot": "A bat-and-ball sport played between two teams where players hit a pitched ball and run bases to score runs."
+    },
+    {
+        "user": "Chartered Accountant",
+        "bot": "Sorry, I don't know that yet."
+    }
+]

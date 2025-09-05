@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Fusion AI</title>
+    <style>
+        /* --- Page layout --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #ffffffdd;
+            padding: 36px;
+            border-radius: 20px;
+            width: 720px;
+            max-width: 96%;
+            height: 82vh;
+            box-shadow: 0 18px 36px rgba(0,0,0,0.18);
+        }
+
+        /* --- Logo (SVG) --- */
+        #logoContainer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        /* We style the SVG container to keep it responsive */
+        #logoSVG {
+            height: 56px;              /* visual height */
+            width: auto;
+            display: block;
+        }
+
+        /* --- Chat area --- */
+        #chat {
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px;
+            background: #f7f7f8;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bubble {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px 16px;
+            border-radius: 12px;
+            max-width: 82%;
+            word-wrap: break-word;
+        }
+
+        .user {
+            align-self: flex-end;
+            background: #dcdcdc;
+            text-align: right;
+        }
+
+        .ai {
+            align-self: flex-start;
+            background: #ffffff;
+            text-align: left;
+            gap: 10px;
+        }
+
+        /* --- Fusion avatar on AI responses --- */
+        .ai .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6f61, #ffb347);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.75em;
+            flex-shrink: 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+        }
+
+        /* --- Input area --- */
+        #inputArea {
+            display: flex;
+            gap: 10px;
+        }
+
+        #userInput {
+            flex: 1;
+            padding: 14px 18px;
+            border-radius: 22px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        #userInput:focus {
+            border-color: #ff6f61;
+            box-shadow: 0 0 6px rgba(255,111,97,0.18);
+        }
+
+        button {
+            padding: 12px 20px;
+            border-radius: 22px;
+            border: none;
+            background: linear-gradient(45deg, #ff6f61, #ffb347);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform .12s ease;
+        }
+
+        button:hover { transform: translateY(-2px); }
+
+        /* --- Typing animation --- */
+        .typing { font-style: italic; opacity: .8; display: inline-block; }
+        .dots::after {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            margin-left: 6px;
+            border-radius: 50%;
+            background: #333;
+            animation: blink 1s infinite steps(3);
+        }
+        @keyframes blink {
+            0%,20% { background: #333; }
+            40% { background: transparent; }
+            60% { background: #333; }
+            80% { background: transparent; }
+            100% { background: #333; }
+        }
+
+        /* scrollbar styling (optional) */
+        #chat::-webkit-scrollbar { width: 8px; }
+        #chat::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg,#ff6f61,#ffb347);
+            border-radius: 6px;
+        }
+        #chat::-webkit-scrollbar-track { background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <div id="container">
+
+        <!-- SVG logo (no -webkit-background-clip usage) -->
+        <div id="logoContainer" aria-hidden="true">
+            <!-- Inline SVG gradient text logo -->
+            <svg id="logoSVG" viewBox="0 0 640 80" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img">
+                <defs>
+                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#ff6f61"/>
+                        <stop offset="100%" stop-color="#ffb347"/>
+                    </linearGradient>
+                    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.18"/>
+                    </filter>
+                </defs>
+
+                <!-- Text centered -->
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
+                      font-family="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+                      font-size="40" font-weight="700" fill="url(#logoGrad)" filter="url(#softShadow)">
+                    Fusion AI
+                </text>
+            </svg>
+        </div>
+
+        <!-- Chat area -->
+        <div id="chat" role="log" aria-live="polite"></div>
+
+        <!-- Input area -->
+        <div id="inputArea">
+            <input id="userInput" placeholder="Type something..." autocomplete="off" />
+            <button id="sendBtn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        /* ---- UI-only logic. Keep your Python model responses unchanged.
+           This file sends messages to /get?msg=... and displays what's returned. ---- */
+
+        const chat = document.getElementById('chat');
+        const input = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        // Creates and appends a user message bubble
+        function appendUserBubble(text) {
+            const b = document.createElement('div');
+            b.className = 'bubble user';
+            b.textContent = text;
+            chat.appendChild(b);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        // Shows typing bubble with avatar; then after delay, appends the real AI message.
+        // messageText should be the exact string you get from your Python backend.
+        function showAIResponseWithTyping(messageText) {
+            // typing bubble
+            const typing = document.createElement('div');
+            typing.className = 'bubble ai typing dots';
+
+            const avatarTyping = document.createElement('div');
+            avatarTyping.className = 'avatar';
+            avatarTyping.textContent = 'F';
+            typing.appendChild(avatarTyping);
+
+            const typingText = document.createElement('div');
+            typingText.textContent = 'AI is thinking';
+            typing.appendChild(typingText);
+
+            chat.appendChild(typing);
+            chat.scrollTop = chat.scrollHeight;
+
+            // Keep 5s (simulate thinking); you can shorten this if desired
+            setTimeout(() => {
+                // remove typing bubble
+                if (typing.parentNode) typing.parentNode.removeChild(typing);
+
+                // actual AI bubble (avatar + message)
+                const aiBubble = document.createElement('div');
+                aiBubble.className = 'bubble ai';
+
+                const avatar = document.createElement('div');
+                avatar.className = 'avatar';
+                avatar.textContent = 'F';
+
+                const msg = document.createElement('div');
+                msg.textContent = messageText;
+
+                aiBubble.appendChild(avatar);
+                aiBubble.appendChild(msg);
+
+                chat.appendChild(aiBubble);
+                chat.scrollTop = chat.scrollHeight;
+            }, 5000);
+        }
+
+        // Sends the user text to your Python backend and uses its response
+        function sendMessage() {
+            const userText = input.value.trim();
+            if (!userText) return;
+            appendUserBubble(userText);
+            input.value = '';
+
+            // Fetch from your Python endpoint -- IMPORTANT: this preserves your model output exactly
+            fetch('/get?msg=' + encodeURIComponent(userText))
+                .then(res => {
+                    if (!res.ok) return res.text(); // still return text even on non-200 to preserve backend behavior
+                    return res.text();
+                })
+                .then(modelResponse => {
+                    // modelResponse is exactly what your Python returns; we only display it (UI-only)
+                    showAIResponseWithTyping(modelResponse);
+                })
+                .catch(err => {
+                    // If fetch fails, show an error message (UI only)
+                    showAIResponseWithTyping('Error: unable to reach backend (check server).');
+                    console.error('Fetch error:', err);
+                });
+        }
+
+        // handlers
+        sendBtn.addEventListener('click', sendMessage);
+        input.addEventListener('keypress', e => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
