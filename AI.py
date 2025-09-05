@@ -1,4 +1,41 @@
 # Simple AI chatbot with a 700-word dictionary, math solving, and conversation history.
+from textblob import TextBlob
+import wikipedia
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+
+# Training data: (example sentence, intent)
+TRAINING_DATA = [
+    ("hi", "greeting"),
+    ("hello", "greeting"),
+    ("hey", "greeting"),
+    ("who are you", "about"),
+    ("what is your name", "about"),
+    ("2+2", "math"),
+    ("lion", "animal"),
+]
+
+texts, labels = zip(*TRAINING_DATA)
+
+# Turn text into numbers
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(texts)
+
+# Train a classifier
+model = MultinomialNB()
+model.fit(X, labels)
+
+def predict_intent(user_input):
+    X_test = vectorizer.transform([user_input])
+    return model.predict(X_test)[0]
+GREETING_MSG = "Hello! I'm Fusion AI. How can I help you today?"
+
+def get_response(user_input):
+    user_input = user_input.lower()
+
+    # Greeting responses
+    if user_input in ["hi", "hello", "hey"]:
+        return GREETING_MSG
 # load KB from file
 KB_FILE = "kb.json"
 def load_kb():
@@ -15,6 +52,28 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 DATA_FILE = "data.json"
+
+def get_response(user_input):
+    user_input = user_input.lower().strip()
+
+    # ML intent detection
+    intent = predict_intent(user_input)
+
+    if intent == "greeting":
+        return "Hello! I'm Fusion AI. How can I help you today?"
+    elif intent == "about":
+        return "I’m Fusion AI, your assistant."
+    elif intent == "math":
+        try:
+            return f"Answer: {eval(user_input)}"
+        except:
+            return "I couldn’t solve that math problem."
+    elif intent == "animal":
+        if user_input in WORD_DICTIONARY:
+            return WORD_DICTIONARY[user_input]
+        else:
+            return "That’s an interesting animal!"
+
 
 # ---------- 1) PUT YOUR WORD_DICTIONARY HERE ----------
 WORD_DICTIONARY = {
@@ -895,6 +954,21 @@ WORD_DICTIONARY = {
 }
 # Paste your big dict above this comment
 # WORD_DICTIONARY = { "school": "A place ...", ... }
+
+def check_spelling(user_input):
+    blob = TextBlob(user_input)
+    corrected = str(blob.correct())
+    if corrected.lower() != user_input.lower():
+        return f"Did you mean: {corrected}?"
+    return None
+
+def wiki_lookup(query):
+    try:
+        summary = wikipedia.summary(query, sentences=2)
+        return f"(From Wikipedia) {summary}"
+    except Exception:
+        return None
+
 
 # ---------- 2) Safe load/save for conversation history ----------
 def load_data():
